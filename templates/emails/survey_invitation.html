@@ -1,0 +1,27 @@
+{% extends "emails/base.html" %}
+
+{% block title %}Tu opinión nos importa - {{ event.title }}{% endblock %}
+
+{% block content %}
+<h2 style="color: #9b59b6;">💬 Queremos Saber Tu Opinión</h2>
+
+<p>Hola <strong>{{ attendee.full_name }}</strong>,</p>
+
+<p>Esperamos que hayas disfrutado <strong>{{ event.title }}</strong>. Tu opinión es muy importante para nosotros.</p>
+
+<div class="info-box">
+    <h3 style="margin-top: 0; color: #9b59b6;">📝 {{ survey.title }}</h3>
+    <p>{{ survey.description }}</p>
+    <p style="margin: 10px 0;"><strong>⏱️ Tiempo estimado:</strong> 2-3 minutos</p>
+</div>
+
+<div style="text-align: center;">
+    <a href="{{ frontend_url }}/surveys/{{ survey.id }}" class="button" style="background-color: #9b59b6;">Responder Encuesta</a>
+</div>
+
+<div style="background-color: #f3e5f5; padding: 15px; border-radius: 5px; margin-top: 20px;">
+    <p style="margin: 0;"><strong>🎁 Como agradecimiento:</strong> Al completar la encuesta, participarás en el sorteo de entradas para futuros eventos.</p>
+</div>
+
+<p>¡Gracias por tu tiempo! 🙏</p>
+{% endblock %}

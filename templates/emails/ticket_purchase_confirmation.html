@@ -1,0 +1,61 @@
+{% extends "emails/base.html" %}
+
+{% block title %}Confirmación de Compra - {{ event.title }}{% endblock %}
+
+{% block content %}
+<h2 style="color: #2ecc71;">✅ ¡Compra Confirmada!</h2>
+
+<p>Hola <strong>{{ buyer_name }}</strong>,</p>
+
+<p>Tu compra ha sido procesada exitosamente. ¡Nos vemos en el evento!</p>
+
+<div class="info-box">
+    <h3 style="margin-top: 0; color: #3498db;">📋 Detalles del Evento</h3>
+    <table>
+        <tr>
+            <td>Evento:</td>
+            <td><span class="highlight">{{ event.title }}</span></td>
+        </tr>
+        <tr>
+            <td>Fecha:</td>
+            <td>{{ event.start_date|date:"d/m/Y H:i" }}</td>
+        </tr>
+        <tr>
+            <td>Lugar:</td>
+            <td>{{ event.venue.name }}, {{ event.venue.city }}</td>
+        </tr>
+        <tr>
+            <td>Tipo de Ticket:</td>
+            <td>{{ ticket.ticket_type.name }}</td>
+        </tr>
+        <tr>
+            <td>Código:</td>
+            <td><strong>{{ ticket.code }}</strong></td>
+        </tr>
+        <tr>
+            <td>Precio:</td>
+            <td>${{ ticket.final_price|floatformat:0 }}</td>
+        </tr>
+    </table>
+</div>
+
+{% if qr_code_url %}
+<div class="qr-code">
+    <h3>🎫 Tu Ticket QR</h3>
+    <p style="color: #777; font-size: 14px;">Presenta este código en el evento para hacer check-in</p>
+    <img src="{{ qr_code_url }}" alt="QR Code">
+</div>
+{% endif %}
+
+<div style="text-align: center;">
+    <a href="{{ frontend_url }}/my-tickets" class="button">Ver Mi Ticket</a>
+</div>
+
+<div style="background-color: #fff3cd; padding: 15px; border-radius: 5px; margin-top: 20px;">
+    <p style="margin: 0;"><strong>💡 Importante:</strong> Guarda este email. Necesitarás el código QR para ingresar al evento.</p>
+</div>
+
+<p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
+
+<p>¡Disfruta el evento! 🎊</p>
+{% endblock %}

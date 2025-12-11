@@ -1,0 +1,40 @@
+{% extends "emails/base.html" %}
+
+{% block title %}Check-in Confirmado - {{ event.title }}{% endblock %}
+
+{% block content %}
+<h2 style="color: #2ecc71;">✅ Check-in Realizado</h2>
+
+<p>Hola <strong>{{ attendee.full_name }}</strong>,</p>
+
+<p>Tu check-in ha sido registrado exitosamente. ¡Disfruta el evento!</p>
+
+<div class="info-box">
+    <h3 style="margin-top: 0; color: #3498db;">✓ Confirmación</h3>
+    <table>
+        <tr>
+            <td>Evento:</td>
+            <td><span class="highlight">{{ event.title }}</span></td>
+        </tr>
+        <tr>
+            <td>Check-in:</td>
+            <td>{{ attendee.checked_in_at|date:"d/m/Y H:i" }}</td>
+        </tr>
+        <tr>
+            <td>Ubicación:</td>
+            <td>{{ event.venue.name }}</td>
+        </tr>
+    </table>
+</div>
+
+<div style="background-color: #e8f8f5; padding: 15px; border-radius: 5px; margin: 20px 0;">
+    <h4 style="margin-top: 0; color: #16a085;">📱 Información Útil</h4>
+    <ul style="margin: 10px 0;">
+        <li>Mantén tu identificación contigo</li>
+        <li>Sigue las indicaciones del personal del evento</li>
+        <li>Encuentra puntos de información en caso de necesitar ayuda</li>
+    </ul>
+</div>
+
+<p>¡Que disfrutes el evento! 🎊</p>
+{% endblock %}

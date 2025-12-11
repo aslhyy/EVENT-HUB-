@@ -1,0 +1,43 @@
+{% extends "emails/base.html" %}
+
+{% block title %}Evento Cancelado - {{ event.title }}{% endblock %}
+
+{% block content %}
+<h2 style="color: #e74c3c;">❌ Evento Cancelado</h2>
+
+<p>Hola <strong>{{ attendee_name }}</strong>,</p>
+
+<p>Lamentamos informarte que el evento <strong>{{ event.title }}</strong> ha sido cancelado.</p>
+
+<div class="info-box" style="background-color: #ffebee; border-left-color: #e74c3c;">
+    <h3 style="margin-top: 0; color: #e74c3c;">Evento Cancelado</h3>
+    <table>
+        <tr>
+            <td>Evento:</td>
+            <td>{{ event.title }}</td>
+        </tr>
+        <tr>
+            <td>Fecha original:</td>
+            <td>{{ event.start_date|date:"d/m/Y H:i" }}</td>
+        </tr>
+        <tr>
+            <td>Tu código:</td>
+            <td>{{ ticket.code }}</td>
+        </tr>
+    </table>
+</div>
+
+<div style="background-color: #fff9c4; padding: 15px; border-radius: 5px; margin: 20px 0;">
+    <h4 style="margin-top: 0;">💰 Reembolso</h4>
+    <p style="margin: 5px 0;">Tu pago será reembolsado automáticamente en los próximos 5-10 días hábiles al mismo método de pago utilizado.</p>
+    <p style="margin: 5px 0;"><strong>Monto:</strong> ${{ ticket.final_price|floatformat:0 }}</p>
+</div>
+
+<div style="text-align: center;">
+    <a href="{{ frontend_url }}/events" class="button">Explorar Otros Eventos</a>
+</div>
+
+<p>Lamentamos las molestias ocasionadas. Esperamos verte pronto en otro evento.</p>
+
+<p>Equipo EventHub</p>
+{% endblock %}

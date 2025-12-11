@@ -1,0 +1,51 @@
+{% extends "emails/base.html" %}
+
+{% block title %}Recordatorio - {{ event.title }}{% endblock %}
+
+{% block content %}
+<h2 style="color: #f39c12;">⏰ Recordatorio de Evento</h2>
+
+<p>Hola <strong>{{ attendee_name }}</strong>,</p>
+
+<p>¡Tu evento está próximo! Faltan solo <span class="highlight">{{ days_before }} días</span>.</p>
+
+<div class="info-box">
+    <h3 style="margin-top: 0; color: #3498db;">📅 Información del Evento</h3>
+    <table>
+        <tr>
+            <td>Evento:</td>
+            <td><span class="highlight">{{ event.title }}</span></td>
+        </tr>
+        <tr>
+            <td>Fecha:</td>
+            <td>{{ event.start_date|date:"l, d de F de Y" }}</td>
+        </tr>
+        <tr>
+            <td>Hora:</td>
+            <td>{{ event.start_date|date:"H:i" }}</td>
+        </tr>
+        <tr>
+            <td>Lugar:</td>
+            <td>{{ event.venue.name }}<br>{{ event.venue.full_address }}</td>
+        </tr>
+    </table>
+</div>
+
+<div style="text-align: center;">
+    <a href="{{ frontend_url }}/events/{{ event.id }}" class="button">Ver Detalles del Evento</a>
+</div>
+
+<div style="background-color: #e8f8f5; padding: 15px; border-radius: 5px; margin-top: 20px;">
+    <h4 style="margin-top: 0; color: #16a085;">✨ Recomendaciones:</h4>
+    <ul style="margin: 10px 0;">
+        <li>Llega 30 minutos antes para hacer check-in</li>
+        <li>Ten tu código QR listo en tu dispositivo</li>
+        <li>Revisa las indicaciones de cómo llegar</li>
+        {% if event.venue.amenities %}
+        <li>Facilidades disponibles: {{ event.venue.amenities }}</li>
+        {% endif %}
+    </ul>
+</div>
+
+<p>¡Te esperamos! 🎉</p>
+{% endblock %}
