@@ -60,7 +60,7 @@ class SponsorTier(models.Model):
     @property
     def sponsors_count(self):
         """Retorna el número de patrocinadores en este nivel."""
-        return self.sponsors.count()
+        return self.sponsorships.filter(status='active').count()
 
     @property
     def active_sponsorships_count(self):

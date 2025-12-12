@@ -15,6 +15,10 @@ class SponsorTierAdmin(admin.ModelAdmin):
     search_fields = ['name', 'description']
     readonly_fields = ['created_at', 'updated_at', 'sponsors_count']
 
+    def sponsors_count(self, obj):
+            """Mostrar cantidad de sponsors activos"""
+            return obj.sponsors_count
+    sponsors_count.short_description = 'Sponsors Activos'
 
 @admin.register(Sponsor)
 class SponsorAdmin(admin.ModelAdmin):

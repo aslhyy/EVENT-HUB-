@@ -133,6 +133,17 @@ class AttendeeViewSet(viewsets.ModelViewSet):
                 attendee.checked_in_at = timezone.now()
                 attendee.checked_in_by = request.user
                 attendee.save()
+
+            # Enviar confirmación de check-in
+            from core.emails import EmailService
+            import logging
+            logger = logging.getLogger(__name__)
+
+            try:
+                EmailService.send_check_in_confirmation(attendee)
+                logger.info(f"Email de check-in enviado para {attendee.email}")
+            except Exception as e:
+                logger.error(f"Error enviando email de check-in: {e}")
             
             # Marcar ticket como usado si es el primer check-in
             if ticket.status == 'active' and attendee.total_check_ins == 1:

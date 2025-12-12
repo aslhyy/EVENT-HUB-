@@ -1,0 +1,88 @@
+# 🤝 Guía de Contribución - EventHub
+
+## Flujo de Trabajo
+
+### 1. Crear un Issue
+Antes de empezar a trabajar, crea un Issue describiendo:
+- **Qué** vas a hacer
+- **Por qué** es necesario
+- **Cómo** lo vas a implementar
+
+### 2. Crear una Rama
+```bash
+git checkout -b feature/nombre-descriptivo
+# o
+git checkout -b fix/nombre-del-bug
+```
+
+### 3. Hacer Commits
+Usa mensajes descriptivos siguiendo la convención:
+```
+tipo(scope): descripción corta
+
+Descripción más detallada si es necesario
+```
+
+**Tipos permitidos:**
+- `feat`: Nueva funcionalidad
+- `fix`: Corrección de bug
+- `docs`: Documentación
+- `style`: Formato (sin cambios de lógica)
+- `refactor`: Refactorización
+- `test`: Agregar o modificar tests
+- `chore`: Tareas de mantenimiento
+
+**Ejemplos:**
+```bash
+git commit -m "feat(tickets): agregar validación de stock en compra"
+git commit -m "fix(events): corregir filtro de fechas en eventos pasados"
+git commit -m "docs(readme): actualizar instrucciones de instalación"
+```
+
+### 4. Push y Pull Request
+```bash
+git push origin feature/nombre-descriptivo
+```
+
+Luego en GitHub:
+1. Crear Pull Request
+2. Referenciar el Issue (`Closes #123`)
+3. Describir los cambios realizados
+4. Solicitar revisión de al menos un compañero
+
+### 5. Code Review
+- Revisar el código de otros
+- Comentar constructivamente
+- Aprobar o solicitar cambios
+
+### 6. Merge
+Después de aprobación:
+- Hacer merge a `main`
+- Eliminar la rama feature
+
+## Standards de Código
+
+### Python
+- Seguir PEP 8
+- Usar type hints
+- Documentar con docstrings
+- Máximo 100 caracteres por línea
+
+### Nombres
+- Clases: `PascalCase`
+- Funciones/variables: `snake_case`
+- Constantes: `UPPER_SNAKE_CASE`
+
+### Tests
+- Escribir tests para nueva funcionalidad
+- Mantener cobertura > 50%
+- Usar nombres descriptivos para tests
+
+## Revisión de PRs
+
+Al revisar un PR, verificar:
+- ✅ El código funciona correctamente
+- ✅ Incluye tests
+- ✅ La documentación está actualizada
+- ✅ Sigue los standards del proyecto
+- ✅ No rompe funcionalidad existente

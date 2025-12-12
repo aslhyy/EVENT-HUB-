@@ -1,4 +1,3 @@
 /venv
-/apps/events/
-/apps/attendes/
-/apps/tickets/
+/.env
+/nixpacks.toml
