@@ -1,12 +1,9 @@
-"""
-Configuración de settings basada en el entorno.
-"""
-from decouple import config
+import os
 
-# Determinar qué configuración usar
-ENVIRONMENT = config('ENVIRONMENT', default='dev')
+ENV = os.getenv("DJANGO_ENV", "dev")
 
-if ENVIRONMENT == 'prod':
+if ENV == "prod":
     from .prod import *
 else:
     from .dev import *
+    
