@@ -3,7 +3,7 @@ Configuración de desarrollo.
 """
 from .base import *
 
-DEBUG = True
+DEBUG = False
 
 # Debug Toolbar
 INSTALLED_APPS += ['debug_toolbar']
