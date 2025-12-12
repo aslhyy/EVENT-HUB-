@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ['python311', 'gcc', 'pkg-config', 'mysql-client', 'libmysqlclient-dev']
+nixPkgs = ['python311', 'gcc', 'pkg-config', 'mysql80']
 
 [phases.install]
 cmds = ['pip install -r requirements/prod.txt']
@@ -8,4 +8,4 @@ cmds = ['pip install -r requirements/prod.txt']
 cmds = ['python manage.py collectstatic --noinput']
 
 [start]
-cmd = 'gunicorn config.wsgi --bind 0.0.0.0:$PORT'
+cmd = 'python manage.py migrate && gunicorn config.wsgi --bind 0.0.0.0:$PORT --workers 4'
